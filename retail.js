@@ -64,7 +64,7 @@ module.exports = function myShop(pool) {
         else if (getPrice === "/images/e.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
              shoeNames =  'Mens Summer Shirt'
-             getCategory = 'Male'
+             getCategory = 'Men'
             getCost = 1500
         }
 
