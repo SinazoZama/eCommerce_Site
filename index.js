@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:tailer44@localhost:5432/testdb';
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:Sina@2160@localhost:5432/schools';
 
 const pool = new Pool({
     connectionString
@@ -97,11 +97,11 @@ app.post('/done', function (req, res) {
 })
 
 app.post('/form',  function (req, res) {
-    theMail = req.body.myMail
+    
     theColour = req.body.colour
     theSize = req.body.size
-    theUser = req.body.myUser
-    retailFact.myData(theUser, theMail, theColour, theSize)
+    
+    retailFact.myData( theColour, theSize)
     retailFact.getOrders()
     retailFact.allData()
     retailFact.finalData();

@@ -3,7 +3,7 @@ module.exports = function myShop(pool) {
     var getOrder = '';
     var getColour = '';
     var getSize = 0;
-    var getGender = '';
+    var getCategory = '';
     var getEmail = '';
     var getPrice = 0;
     var checkBut = '';
@@ -18,16 +18,16 @@ module.exports = function myShop(pool) {
 
     var myObj = {}
     function addName(gender) {
-        getGender = gender
+        getCategory = gender
 
 
     }
 
-    async function myData(user, emails, colour, size) {
-        getEmail = emails
+    async function myData(colour, size) {
+        
         getColour = colour
         getSize = size
-        getUser = user
+    
 
 
 
@@ -44,53 +44,53 @@ module.exports = function myShop(pool) {
 
         if (getPrice === "/images/b.jpg") {
             pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-            shoeNames =  'Urban Find'
-            getGender = 'Male'
-            getCost = 800
+            shoeNames =  'Mens Print T-shirt'
+            getCategory = 'Mens'
+            getCost = 900
         }
         else if (getPrice === "/images/c.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'HDKS Sneaker'
-             getGender = 'Male'
-            getCost = 1200
+             shoeNames =  'Mens Multi-Color Shirt'
+             getCategory = 'Men'
+            getCost = 2200
         }
 
         else if (getPrice === "/images/d.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Relay Shoe'
-             getGender = 'Male'
+             shoeNames =  'Mens Cargo Jacket'
+             getCategory = 'Men'
             getCost = 700
         }
         else if (getPrice === "/images/e.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Sport Guyisa'
-             getGender = 'Male'
+             shoeNames =  'Mens Summer Shirt'
+             getCategory = 'Male'
             getCost = 1500
         }
 
         if (getPrice === "/images/5.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Rose Sandal'
-             getGender = 'Female'
+             shoeNames =  'Womens Mini Dress'
+             getCategory = 'Women'
             getCost = 900
         }
         else if (getPrice === "/images/2.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Red High Heels'
-             getGender = 'Female'
+             shoeNames =  'Womens Pull String Shirt'
+             getCategory = 'Women'
             getCost = 1100
         }
 
         else if (getPrice === "/images/3.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Pink Sneaker'
-             getGender = 'Female'
+             shoeNames =  'Womens Two Piece'
+             getCategory = 'Women'
             getCost = 800
         }
         else if (getPrice === "/images/4.jpg") {
              pool.query('UPDATE sku shoes SET stock = stock - 1 WHERE shoes = $1', [getPrice])
-             shoeNames =  'Mini Heels'
-             getGender = 'Female'
+             shoeNames =  'Womens Floral Print Dress'
+             getCategory = 'Women'
             getCost = 600
         }
         
@@ -111,7 +111,7 @@ module.exports = function myShop(pool) {
 
         myObj = {
             name: shoeNames,
-            category: getGender,
+            
             sizes: getSize,
             colour: getColour,
             prices: getPrice,
@@ -122,7 +122,7 @@ module.exports = function myShop(pool) {
     }
 
      function finalData() {
-        pool.query('insert into myRetails (users,email , colour, size, price, order_no,cost) values ($1,$2,$3,$4,$5,$6,$7)', [myObj.users, myObj.mails, myObj.colours, myObj.sizes, myObj.prices, myObj.orders, myObj.cost]);
+        pool.query('insert into myRetails (colour, size, price, order_no,cost) values ($1,$2,$3,$4,$5)', [ myObj.colours, myObj.sizes, myObj.prices, myObj.orders, myObj.cost]);
         return  myObj
     }
 
